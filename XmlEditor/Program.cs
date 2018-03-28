@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using XmlEditor.Models;
+using XmlEditor.Presenters;
+using XmlEditor.Views;
 
 namespace XmlEditor
 {
@@ -16,7 +16,12 @@ namespace XmlEditor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            IMainModel model = new MainModel();
+            IMainView view = new MainView();
+            new MainPresenter(model, view);
+
+            Application.Run(view as Form);
         }
     }
 }
